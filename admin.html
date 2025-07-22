@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.seha.sa/logo.png">
+  <title>إضافة مريض - صحتي</title>
+  <link href="css2.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="root">
+    <div class="App">
+      <main>
+        <div>
+          <!-- Navbar Section -->
+          <nav class="header navbar navbar-expand-lg navbar-light fixed-navbar">
+            <div class="nav-container">
+              <a class="navbar-brand" href="https://sahe-se.kesug.com">
+                <img src="images/seha_logo.svg" alt="logo" class="logo">
+              </a><!-- Toggler for mobile menu -->
+              <div class="d-lg-none d-xl-none justify-content-end menu">
+                <button aria-controls="responsive-navbar-nav" type="button" aria-label="Toggle navigation"
+                  class="d-inline-flex menu-img navbar-toggler collapsed"
+                  style="cursor: pointer; appearance: none; font-family: Cairo, sans-serif; font-size: 20px; line-height: 20px; margin: 0; outline: none; border-radius: 10px; box-sizing: border-box; align-items: center; height: 39.9994px; justify-content: center; padding: 0; width: 40px; background-color: rgba(0, 0, 0, 0); border: none; display: flex; color: rgba(0, 0, 0, 0.65); transition: box-shadow 0.15s ease-in-out; overflow: visible; touch-action: manipulation;"
+                  onclick="toggleIcon(this)">
+
+                  <span class="menu-icon"
+                    style="box-sizing: border-box; height: 35.9983px; width: 20px; background-image: url('services/images/menu.svg'); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; display: block;">
+                  </span>
+                </button>
+                <script>
+                  function toggleIcon(button) {
+                    const icon = button.querySelector('.menu-icon');
+                    const menuIconUrl = 'images/menu-close.svg';
+                    const closeIconUrl = 'images/menu.svg'; // Replace with your actual close icon URL
+
+                    if (icon.style.backgroundImage.includes(menuIconUrl)) {
+                      icon.style.backgroundImage = `url('${closeIconUrl}')`;
+                    } else {
+                      icon.style.backgroundImage = `url('${menuIconUrl}')`;
+                    }
+                  }
+                </script>
+              </div>
+
+              <!-- Navbar Links -->
+              <div class="white justify-content-between navbar-collapse collapse" id="responsive-navbar-nav">
+                <div class="justify-content-between navbar-nav">
+                  <a class="link nav-link" href="https://seha.sa/#/inquiries-container">الرئيسية</a>
+                  <a class="link nav-link" href="https://www.seha.sa/#/services">الخدمات</a>
+                  <a class="link nav-link" href="https://sahe-se.kesug.com/inquiries">الاستعلامات</a>
+                  <a class="link nav-link" href="https://seha.sa/#/faq">الأسئلة الشائعة</a>
+                  <a class="link nav-link" href="https://seha.sa/#/ContactUs">تواصل معنا </a>
+
+
+
+                  <a class="nav-link" href="https://www.seha.sa/#/iamredirection/1">
+                    <p>إنشاء حساب</p>
+                  </a>
+                  <a class="login nav-link" href="https://seha.sa/#/account/login">
+                    <img src="images/user_o.svg" alt="user" class="">
+                    <p>تسجيل الدخول</p>
+                  </a>
+                </div>
+                <a class="nav-link" href="admin.html">
+                  <img src="images/menu.svg" alt="user" class="">
+                </a>
+              </div>
+            </div>
+
+            <!-- Scroll to Top Button -->
+            <button id="top-button" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14.4" height="18.503" viewBox="0 0 14.4 18.503">
+                <path
+                  d="M8.862,11.37,14.381,6.1a1.7,1.7,0,0,1,2.355,0l5.54,5.272a1.555,1.555,0,0,1,0,2.271,1.738,1.738,0,0,1-2.376,0l-2.649-2.528V22.519a1.684,1.684,0,0,1-3.364,0V11.113l-2.649,2.534a1.738,1.738,0,0,1-2.376,0,1.561,1.561,0,0,1,0-2.276Z"
+                  fill="#00a1c9"></path>
+              </svg>
+            </button>
+          </nav>
+          <!-- Content Section -->
+          <div class="inner-page inquiries-container">
+            <h1 style="margin-top:50px;" class="heading">الإجازات المرضية</h1>
+            <p class="sub-heading">خدمة الاستعلام عن الإجازات المرضية تتيح لك الاستعلام عن حالة طلبك للإجازة
+              ويمكنك طباعتها عن طريق تطبيق صحتي</p>
+
+            <div class="row justify-content-center mt-1">
+              <div class="col-md-5 p-4">
+                <div class="container">
+                  <h2>🔒 كلمة المرور</h2>
+                  <div id="passwordSection">
+                    <input type="password" id="adminPass" placeholder="أدخل كلمة المرور" />
+                    <button onclick="checkPassword()">دخول</button>
+                  </div>
+                  <div id="formSection" style="display: none;">
+                    <h2>إضافة بيانات المريض</h2>
+                    <form id="addPatientForm">
+                      <input type="text" id="name" placeholder="اسم المريض" required />
+                      <input type="number" id="ID" placeholder="رقم الهوية" required />
+                      <label>تاريخ إصدار تقرير الإجازة:</label>
+                      <input type="date" id="reportDate" required />
+                      <label>تبدأ من:</label>
+                      <input type="date" id="startDate" required />
+                      <label> وحتى:</label>
+                      <input type="date" id="endDate" required />
+                      <input type="number" id="days" placeholder="المدة بالأيام" required />
+                      <input type="text" id="doctor" placeholder="اسم الطبيب" required />
+                      <input type="text" id="position" placeholder="المسمى الوظيفي" required />
+                      <button type="submit">✅ تم</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Footer Section -->
+
+            <div class="footer-container container-fluid">
+              <div class="footer">
+                <div class="about section">
+                  <img src="images/logo_oo.svg" alt="Logo">
+                  <p class="about">
+                    منصة صحة تخدم جميع المنشأت الطبية من خلال تقديم الخدمات الصحية إلكترونياً لجميع
+                    المنشأت الطبية وتسعى إلى توحيد وأتمتة الاجراءات والخدمات بما في دوره رفع جودة الاداء
+                    وخفض التكاليف.
+                  </p>
+                </div>
+                <div class="links section" style="align-items: center;">
+                  <h3 class="heading">القائمة الرئيسية</h3>
+                  <ul class="links-wrapepr">
+                    <li class="inquiry-li"><a class="nav-link" href="https://seha.sa/#/services">الخدمات</a></li>
+                    <li class="inquiry-li"><a class="nav-link" href="https://seha.sa/#/inquiries">الاستعلامات</a></li>
+                    <li class="inquiry-li"><a class="nav-link" href="https://seha.sa/#/faq">الأسئلة
+                        الشائعة</a></li>
+                    <li class="inquiry-li" style="border-bottom: none;"><a class="nav-link"
+                        href="https://seha.sa/#/ContactUs">تواصل معنا</a></li>
+                  </ul>
+                </div>
+
+                <div class="section d-none">
+                  <h3 class="heading d-none">النشرة البريدية</h3>
+                  <p class="about d-none">الاشتراك في الرسائل الإخبارية</p>
+                  <form class="d-none">
+                    <div class="input-wrapper">
+                      <input placeholder="البريد الالكتروني" type="email" class="form-control">
+                      <button class="button-small">إشترك</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="contact section">
+                  <h3 class="heading">تواصل معنا</h3>
+                  <div class="contact-wrapper">
+                    <div class="values">
+                      <div class="details">
+                        <img alt="phone icon" src="images/phone.svg">
+                        <a href="tel:920002005">920002005</a>
+                      </div>
+                      <div class="details">
+                        <img alt="email line" src="images/email.svg">
+                        <a href="mailto:support@seha.sa">support@seha.sa</a>
+                      </div>
+                      <div class="details">
+                        <img alt="whatsapp" src="images/whatsapp.svg" style="width: 16px; height: 16px; opacity: 0.5;">
+                        <a href="https://wa.me/920002005" target="_blank" rel="noreferrer">920002005</a>
+                      </div>
+                    </div>
+
+                    <div class="contact"><img alt="lean logo" src="https://seha.sa/assets/lean-logo-De0NEeoI.svg">
+                      <div class="spacer"></div><img alt="moh logo" src="https://seha.sa/assets/MOH-logo-DYiHZCSg.svg">
+                    </div>
+                  </div>
+                  <div class="timings mt-3" style="margin-right: 0; margin-left: auto; width: fit-content;">
+                    <span style="font-size: 12px; color: rgb(240, 243, 248);"><a href="admin.html"
+                        style="color: white;">أوقات العمل:</a> الأحد حتى
+                      الخميس 8 ص - 11م</span>
+                  </div>
+                  <div class="mini-footer-container container-fluid">
+                    <ul class="contact-wrapper">
+                      <li class="socials-wrapper">
+                        <button><a href="https://www.youtube.com/channel/UCb9ZrS2YcriYqIPIHNp9wcQ"><img
+                              src="images/youtube-fill.svg" alt="YouTube"></a></button>
+                        <button><a href="https://twitter.com/seha_services"><img src="images/twitter-icon.svg"
+                              alt="Twitter"></a></button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="footer-note-wrapper">
+                    <p>منصة صحة معتمدة من قبل وزارة الصحة © 2025</p>
+                    <ul>
+                      <li><a href="https://seha.sa/files/T_Cs_v3.pdf">سياسة الخصوصية وشروط
+                          الإستخدام</a></li>
+                      <li><a href="documents/UserManual.pdf">دليل الاستخدام</a></li>
+                    </ul>
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <script>
+            const correctPassword = "admin123";
+
+            function checkPassword() {
+              const inputPass = document.getElementById("adminPass").value;
+              if (inputPass === correctPassword) {
+                alert("مرحبًا بك في لوحة الإضافة");
+                document.getElementById("passwordSection").style.display = "none";
+                document.getElementById("formSection").style.display = "block";
+              } else {
+                alert("كلمة المرور غير صحيحة ❌");
+              }
+            }
+
+            document.getElementById("addPatientForm").addEventListener("submit", function (e) {
+              e.preventDefault();
+              const name = document.getElementById("name").value.trim();
+              const ID = document.getElementById("ID").value.trim();
+              const reportDate = document.getElementById("reportDate").value;
+              const startDate = document.getElementById("startDate").value;
+              const endDate = document.getElementById("endDate").value;
+              const days = document.getElementById("days").value.trim();
+              const doctor = document.getElementById("doctor").value.trim();
+              const position = document.getElementById("position").value.trim();
+
+              const leaveNumber = "PSL" + Math.floor(1000000000 + Math.random() * 9000000000);
+              const identityCode = ID;
+
+              const record = {
+                name,
+                ID,
+                reportDate,
+                startDate,
+                endDate,
+                days,
+                doctor,
+                position,
+                leaveNumber,
+                identityCode
+              };
+
+              const key = `${leaveNumber}_${identityCode}`;
+              localStorage.setItem(key, JSON.stringify(record));
+              alert(`✅ تم حفظ البيانات بنجاح\nرقم الإجازة: ${leaveNumber}\nرمز الهوية: ${identityCode}`);
+              window.location.href = "index.html";
+            });
+          </script>
+          <script src="script.js"></script>
+</body>
+
+</html>

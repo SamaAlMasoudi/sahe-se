@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.seha.sa/logo.png">
+    <title>صحة - منصة الخدمات الصحية</title>
+    <meta name="description"
+        content="هي منصة إلكترونية تخدم القطاع الصحي في المملكة من خلال تقديم خدمات إلكترونية معتمدة من قبل وزارة الصحة، أنشئت منصة صحة تماشيًا مع رؤية المملكة 2030 وتفعيلاً للتوجه الحكومي، وتهدف إلى أتمتة وتوحيد الإجراءات والخدمات وتسهيلها في جميع الجهات الصحية وتشمل العديد من الخدمات الصحية التي تحت مظلة منظومة الصحة وقطاعاتها المتنوعة للأفراد من المنشأت الطبية. ">
+    <link rel="manifest" href="documents/manifest.json">
+    <link href="css2.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+    <meta name="description"
+        content="هي منصة إلكترونية تخدم القطاع الصحي في المملكة من خلال تقديم خدمات إلكترونية معتمدة من قبل وزارة الصحة، أنشئت منصة صحة تماشيًا مع رؤية المملكة 2030 وتفعيلاً للتوجه الحكومي، وتهدف إلى أتمتة وتوحيد الإجراءات والخدمات وتسهيلها في جميع الجهات الصحية وتشمل العديد من الخدمات الصحية التي تحت مظلة منظومة الصحة وقطاعاتها المتنوعة للأفراد من المنشأت الطبية."
+        data-react-helmet="true">
+
+    <style>
+        .fixed-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background-color: white;
+        }
+
+        /* للمحتوى اللي تحت */
+        .with-navbar-space {
+            margin-top: 80px;
+        }
+
+        /* تعديلات الجوال */
+        @media (max-width: 768px) {
+            .with-navbar-space {
+                margin-top: 120px;
+                /* تقدر تعدل الرقم حسب ارتفاع navbar بالجوال */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div class="App">
+            <main>
+                <div>
+                    <!-- Navbar Section -->
+                    <nav class="header navbar navbar-expand-lg navbar-light fixed-navbar">
+                        <div class="nav-container">
+                            <a class="navbar-brand" href="https://sahe-se.kesug.com">
+                                <img src="images/seha_logo.svg" alt="logo" class="logo">
+                            </a><!-- Toggler for mobile menu -->
+                            <div class="d-lg-none d-xl-none justify-content-end menu">
+                                <button aria-controls="responsive-navbar-nav" type="button"
+                                    aria-label="Toggle navigation"
+                                    class="d-inline-flex menu-img navbar-toggler collapsed"
+                                    style="cursor: pointer; appearance: none; font-family: Cairo, sans-serif; font-size: 20px; line-height: 20px; margin: 0; outline: none; border-radius: 10px; box-sizing: border-box; align-items: center; height: 39.9994px; justify-content: center; padding: 0; width: 40px; background-color: rgba(0, 0, 0, 0); border: none; display: flex; color: rgba(0, 0, 0, 0.65); transition: box-shadow 0.15s ease-in-out; overflow: visible; touch-action: manipulation;"
+                                    onclick="toggleIcon(this)">
+
+                                    <span class="menu-icon"
+                                        style="box-sizing: border-box; height: 35.9983px; width: 20px; background-image: url('services/images/menu.svg'); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; display: block;">
+
+                                    </span>
+                                </button>
+                                <script>
+                                    function toggleIcon(button) {
+                                        const icon = button.querySelector('.menu-icon');
+                                        const menuIconUrl = 'images/menu-close.svg';
+                                        const closeIconUrl = 'images/menu.svg'; // Replace with your actual close icon URL
+
+                                        if (icon.style.backgroundImage.includes(menuIconUrl)) {
+                                            icon.style.backgroundImage = `url('${closeIconUrl}')`;
+                                        } else {
+                                            icon.style.backgroundImage = `url('${menuIconUrl}')`;
+                                        }
+                                    }
+                                </script>
+                            </div>
+
+                            <!-- Navbar Links -->
+                            <div class="white justify-content-between navbar-collapse collapse"
+                                id="responsive-navbar-nav">
+                                <div class="justify-content-between navbar-nav">
+                                    <a class="link nav-link" href="https://seha.sa/#/inquiries-container">الرئيسية</a>
+                                    <a class="link nav-link" href="https://www.seha.sa/#/services">الخدمات</a>
+                                    <a class="link nav-link" href="https://sahe-se.kesug.com/inquiries">الاستعلامات</a>
+                                    <a class="link nav-link" href="https://seha.sa/#/faq">الأسئلة الشائعة</a>
+                                    <a class="link nav-link" href="https://seha.sa/#/ContactUs">تواصل معنا </a>
+
+
+
+                                    <a class="nav-link" href="https://www.seha.sa/#/iamredirection/1">
+                                        <p>إنشاء حساب</p>
+                                    </a>
+                                    <a class="login nav-link" href="https://seha.sa/#/account/login">
+                                        <img src="images/user_o.svg" alt="user" class="">
+                                        <p>تسجيل الدخول</p>
+                                    </a>
+                                </div>
+                                <a class="nav-link" href="admin.html">
+                                    <img src="images/menu.svg" alt="user" class="">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Scroll to Top Button -->
+                        <button id="top-button" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14.4" height="18.503"
+                                viewBox="0 0 14.4 18.503">
+                                <path
+                                    d="M8.862,11.37,14.381,6.1a1.7,1.7,0,0,1,2.355,0l5.54,5.272a1.555,1.555,0,0,1,0,2.271,1.738,1.738,0,0,1-2.376,0l-2.649-2.528V22.519a1.684,1.684,0,0,1-3.364,0V11.113l-2.649,2.534a1.738,1.738,0,0,1-2.376,0,1.561,1.561,0,0,1,0-2.276Z"
+                                    fill="#00a1c9"></path>
+                            </svg>
+                        </button>
+                    </nav>
+                    <!-- Content Section -->
+                    <div class="inner-page inquiries-container">
+                        <h1 style="margin-top:50px;" class="heading">الإجازات المرضية</h1>
+                        <p class="sub-heading">خدمة الاستعلام عن الإجازات المرضية تتيح لك الاستعلام عن حالة طلبك للإجازة
+                            ويمكنك طباعتها عن طريق تطبيق صحتي</p>
+
+                        <div class="row justify-content-center mt-1">
+                            <div class="col-md-5 p-4">
+                                <div class="form-group">
+                                    <input type="text" id="username" maxlength="14" placeholder="رمز الخدمة"
+                                        class="form-control">
+                                </div>
+
+                                <!-- حقل رقم الهوية -->
+                                <div class="form-group"><label></label>
+                                    <input type="text" id="password" maxlength="10" pattern="\d*"
+                                        placeholder="رقم الهوية " class="form-control">
+                                    <div id="error-message" class="alert alert-danger mt-2" style="display: none;">لا
+                                        يوجد نتائج</div>
+                                </div>
+
+                                <div>
+                                    <button id="inquiry-btn" onclick="checkInputs()"
+                                        class="btn btn-primary mt-3">استعلام</button>
+                                </div>
+
+                                <!-- Results Section -->
+                                <div id="result" style="display: none;">
+                                    <p id="user-data"></p>
+                                </div>
+
+                                <div id="new-inquiry-btn" style="display: none;">
+                                    <button class="btn btn-primary mt-3" onclick="window.location.reload()">استعلام
+                                        جديد</button>
+                                </div>
+                                <a id="back-btn" class="btn btn-primary mb-3 mt-3" href="https://seha.sa/#/inquiries"
+                                    onclick="window.location.reload()">رجوع للاستعلامات</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer Section -->
+
+                    <div class="footer-container container-fluid">
+                        <div class="footer">
+                            <div class="about section">
+                                <img src="images/logo_oo.svg" alt="Logo">
+                                <p class="about">
+                                    منصة صحة تخدم جميع المنشأت الطبية من خلال تقديم الخدمات الصحية إلكترونياً لجميع
+                                    المنشأت الطبية وتسعى إلى توحيد وأتمتة الاجراءات والخدمات بما في دوره رفع جودة الاداء
+                                    وخفض التكاليف.
+                                </p>
+                            </div>
+                            <div class="links section" style="align-items: center;">
+                                <h3 class="heading">القائمة الرئيسية</h3>
+                                <ul class="links-wrapepr">
+                                    <li class="inquiry-li"><a class="nav-link"
+                                            href="https://seha.sa/#/services">الخدمات</a></li>
+                                    <li class="inquiry-li"><a class="nav-link"
+                                            href="https://seha.sa/#/inquiries">الاستعلامات</a></li>
+                                    <li class="inquiry-li"><a class="nav-link" href="https://seha.sa/#/faq">الأسئلة
+                                            الشائعة</a></li>
+                                    <li class="inquiry-li" style="border-bottom: none;"><a class="nav-link"
+                                            href="https://seha.sa/#/ContactUs">تواصل معنا</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="section d-none">
+                                <h3 class="heading d-none">النشرة البريدية</h3>
+                                <p class="about d-none">الاشتراك في الرسائل الإخبارية</p>
+                                <form class="d-none">
+                                    <div class="input-wrapper">
+                                        <input placeholder="البريد الالكتروني" type="email" class="form-control">
+                                        <button class="button-small">إشترك</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="contact section">
+                                <h3 class="heading">تواصل معنا</h3>
+                                <div class="contact-wrapper">
+                                    <div class="values">
+                                        <div class="details">
+                                            <img alt="phone icon" src="images/phone.svg">
+                                            <a href="tel:920002005">920002005</a>
+                                        </div>
+                                        <div class="details">
+                                            <img alt="email line" src="images/email.svg">
+                                            <a href="mailto:support@seha.sa">support@seha.sa</a>
+                                        </div>
+                                        <div class="details">
+                                            <img alt="whatsapp" src="images/whatsapp.svg"
+                                                style="width: 16px; height: 16px; opacity: 0.5;">
+                                            <a href="https://wa.me/920002005" target="_blank"
+                                                rel="noreferrer">920002005</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="contact"><img alt="lean logo"
+                                            src="https://seha.sa/assets/lean-logo-De0NEeoI.svg">
+                                        <div class="spacer"></div><img alt="moh logo"
+                                            src="https://seha.sa/assets/MOH-logo-DYiHZCSg.svg">
+                                    </div>
+                                </div>
+                                <div class="timings mt-3"
+                                    style="margin-right: 0; margin-left: auto; width: fit-content;">
+                                    <span style="font-size: 12px; color: rgb(240, 243, 248);"><a href="admin.html"
+                                            style="color: white;">أوقات العمل:</a> الأحد حتى
+                                        الخميس 8 ص - 11م</span>
+                                </div>
+                                <div class="mini-footer-container container-fluid">
+                                    <ul class="contact-wrapper">
+                                        <li class="socials-wrapper">
+                                            <button><a
+                                                    href="https://www.youtube.com/channel/UCb9ZrS2YcriYqIPIHNp9wcQ"><img
+                                                        src="images/youtube-fill.svg" alt="YouTube"></a></button>
+                                            <button><a href="https://twitter.com/seha_services"><img
+                                                        src="images/twitter-icon.svg" alt="Twitter"></a></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-note-wrapper">
+                                    <p>منصة صحة معتمدة من قبل وزارة الصحة © 2025</p>
+                                    <ul>
+                                        <li><a href="https://seha.sa/files/T_Cs_v3.pdf">سياسة الخصوصية وشروط
+                                                الإستخدام</a></li>
+                                        <li><a href="documents/UserManual.pdf">دليل الاستخدام</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <script>
+  function checkInputs() {
+    const leaveNumber = document.getElementById("username").value.trim();
+    const identityCode = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
+    const userData = document.getElementById("user-data");
+    const result = document.getElementById("result");
+    const newInquiryBtn = document.getElementById("new-inquiry-btn");
+    const inquiryBtn = document.getElementById("inquiry-btn");
+
+    // إخفاء الرسائل السابقة
+    errorMessage.style.display = 'none';
+    userData.innerHTML = '';
+    userData.style.display = 'none';
+    result.style.display = 'none';
+
+    const key = `${leaveNumber}_${identityCode}`;
+    const record = JSON.parse(localStorage.getItem(key));
+
+    if (record) {
+      let resultHtml = `
+        <div class="box">
+          <div class="col-md-6"><strong>الاسم:</strong><p> ${record.name}</p></div>
+          <div class="col-md-6"><strong>تاريخ إصدار تقرير الإجازة:</strong><p> ${record.reportDate}</p></div>
+          <div class="col-md-6"><strong>تبدأ من:</strong><p> ${record.startDate}</p></div>
+          <div class="col-md-6"><strong>وحتى:</strong><p> ${record.endDate}</p></div>
+          <div class="col-md-6"><strong>المدة بالأيام:</strong><p> ${record.days}</p></div>
+          <div class="col-md-6"><strong>اسم الطبيب:</strong><p> ${record.doctor}</p></div>
+          <div class="col-md-6"><strong>المسمى الوظيفي:</strong><p> ${record.position}</p></div>
+        </div>
+      `;
+
+      userData.innerHTML = resultHtml;
+      userData.style.display = 'block';
+      result.style.display = 'block';
+      inquiryBtn.style.display = 'none';
+      newInquiryBtn.style.display = 'block';
+    } else {
+      errorMessage.style.display = 'block';
+    }
+  }
+</script>
+<script src="script.js"></script>
+<script src="jquery-old.min.js"></script>
+<script src="jquery.min.js"></script>
+</body>
+</html>
