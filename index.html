@@ -251,48 +251,72 @@
 
                     </div>
                 </div>
+
+                <!-- Firebase SDK -->
+                <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
                 <script>
-  function checkInputs() {
-    const leaveNumber = document.getElementById("username").value.trim();
-    const identityCode = document.getElementById("password").value.trim();
-    const errorMessage = document.getElementById("error-message");
-    const userData = document.getElementById("user-data");
-    const result = document.getElementById("result");
-    const newInquiryBtn = document.getElementById("new-inquiry-btn");
-    const inquiryBtn = document.getElementById("inquiry-btn");
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyBotowcKQs47RmO3Pt6OEiMMwF96wHYpQo",
+                        authDomain: "seha-project-5f936.firebaseapp.com",
+                        databaseURL: "https://seha-project-5f936-default-rtdb.firebaseio.com",
+                        projectId: "seha-project-5f936",
+                        storageBucket: "seha-project-5f936.firebasestorage.app",
+                        messagingSenderId: "989033198982",
+                        appId: "1:989033198982:web:c46fa4ceb07a6f9db7a807",
+                        measurementId: "G-XRQB2TXPHQ"
+                    };
 
-    // إخفاء الرسائل السابقة
-    errorMessage.style.display = 'none';
-    userData.innerHTML = '';
-    userData.style.display = 'none';
-    result.style.display = 'none';
+                    firebase.initializeApp(firebaseConfig);
 
-    const key = `${leaveNumber}_${identityCode}`;
-    const record = JSON.parse(localStorage.getItem(key));
+                    function checkInputs() {
+                        const leaveNumber = document.getElementById("username").value.trim();
+                        const identityCode = document.getElementById("password").value.trim();
+                        const errorMessage = document.getElementById("error-message");
+                        const userData = document.getElementById("user-data");
+                        const result = document.getElementById("result");
+                        const newInquiryBtn = document.getElementById("new-inquiry-btn");
+                        const inquiryBtn = document.getElementById("inquiry-btn");
 
-    if (record) {
-      let resultHtml = `
-        <div class="box">
-          <div class="col-md-6"><strong>الاسم:</strong><p> ${record.name}</p></div>
-          <div class="col-md-6"><strong>تاريخ إصدار تقرير الإجازة:</strong><p> ${record.reportDate}</p></div>
-          <div class="col-md-6"><strong>تبدأ من:</strong><p> ${record.startDate}</p></div>
-          <div class="col-md-6"><strong>وحتى:</strong><p> ${record.endDate}</p></div>
-          <div class="col-md-6"><strong>المدة بالأيام:</strong><p> ${record.days}</p></div>
-          <div class="col-md-6"><strong>اسم الطبيب:</strong><p> ${record.doctor}</p></div>
-          <div class="col-md-6"><strong>المسمى الوظيفي:</strong><p> ${record.position}</p></div>
-        </div>
-      `;
+                        errorMessage.style.display = 'none';
+                        userData.innerHTML = '';
+                        userData.style.display = 'none';
+                        result.style.display = 'none';
 
-      userData.innerHTML = resultHtml;
-      userData.style.display = 'block';
-      result.style.display = 'block';
-      inquiryBtn.style.display = 'none';
-      newInquiryBtn.style.display = 'block';
-    } else {
-      errorMessage.style.display = 'block';
-    }
-  }
-</script>
-<script src="script.js"></script>
+                        const key = `${leaveNumber}_${identityCode}`;
+
+                        firebase.database().ref("records/" + key).once("value")
+                            .then((snapshot) => {
+                                const record = snapshot.val();
+                                if (record) {
+                                    let resultHtml = `
+              <div class="box">
+                <strong>الاسم:</strong><p> ${record.name}</p>
+                <strong>تاريخ إصدار تقرير الإجازة:</strong><p> ${record.reportDate}</p>
+                <strong>تبدأ من:</strong><p> ${record.startDate}</p>
+                <strong>وحتى:</strong><p> ${record.endDate}</p>
+                <strong>المدة بالأيام:</strong><p> ${record.days}</p>
+                <strong>اسم الطبيب:</strong><p> ${record.doctor}</p>
+                <strong>المسمى الوظيفي:</strong><p> ${record.position}</p>
+              </div>
+            `;
+                                    userData.innerHTML = resultHtml;
+                                    userData.style.display = 'block';
+                                    result.style.display = 'block';
+                                    inquiryBtn.style.display = 'none';
+                                    newInquiryBtn.style.display = 'block';
+                                } else {
+                                    errorMessage.style.display = 'block';
+                                }
+                            })
+                            .catch((error) => {
+                                alert("حدث خطأ أثناء الاستعلام: " + error.message);
+                            });
+                    }
+                </script>
+                <script src="script.js"></script>
+                <script src="jquery-old.min.js"></script>
+                <script src="jquery.min.js"></script>
 </body>
+
 </html>
